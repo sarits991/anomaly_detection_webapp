@@ -1,30 +1,30 @@
 const modelHandler = require("../model/modelHandler");
-//const anomalyHandler = require('../build/Release/anomaly_algorithm_binding');
+const anomalyHandler = require('../build/Release/anomaly_detection_addon');
 
 exports.learn = async (req, res, next) => {
     let type = req.query.model_type;
-    if(type != "hybrid" && type != "regression") {
+    if(type.localeCompare("hybrid") && type.localeCompare("regression")) {
         res.status(400).send("invalid model type");
         return;
     }
     let data = req.body['train_data'];
-    if(data == undefined) {
+    if(typeof data == "undefined") {
         res.status(400).send("invalid data");
         return;
     }
     let model = modelHandler.addItem();
-    //onsole.log(anomalyHandler.HelloWorld)
+    console.log(anomalyHandler.hello())
     res.status(200).json(model);
 }
 
 exports.getModel = async (req, res, next) => {
     let id = req.query.model_id;
-    if(id == undefined){
+    if(typeof id == "undefined"){
         res.status(400).send("invalid model id");
         return;
     }
     let model = modelHandler.getItem(id);
-    if(model == undefined){
+    if(typeof model == "undefined"){
         res.status(400).send("invalid model id");
         return;
     }
@@ -34,7 +34,7 @@ exports.getModel = async (req, res, next) => {
 
 exports.deleteModel = async (req, res, next) => {
     let id = req.query.model_id;
-    if(id == undefined){
+    if(typeof id == "undefined"){
         res.status(400).send("invalid model id");
         return;
     }

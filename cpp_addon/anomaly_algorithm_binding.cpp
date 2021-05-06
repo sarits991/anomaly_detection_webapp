@@ -7,11 +7,9 @@ using namespace Napi;
   }
 
   Napi::Object Init(Napi::Env env, Napi::Object exports) {
-    exports.Set(Napi::String::New(env, "HelloWorld"),
+    exports.Set("hello",
                 Napi::Function::New(env, Method));
     return exports;
   }
 
-   NODE_API_MODULE(addon, Init)
-
-}
+   NODE_API_MODULE(anomaly_detection_addon, Init);
