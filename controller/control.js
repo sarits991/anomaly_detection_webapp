@@ -2,6 +2,7 @@ const modelHandler = require("../model/modelHandler");
 const anomalyHandler = require('../build/Release/anomaly_detection_addon');
 
 exports.learn = async (req, res, next) => {
+    console.log("in")
     let type = req.query.model_type;
     if(type.localeCompare("hybrid") && type.localeCompare("regression")) {
         res.status(400).send("invalid model type");
@@ -12,9 +13,13 @@ exports.learn = async (req, res, next) => {
         res.status(400).send("invalid data");
         return;
     }
-    let model = modelHandler.addItem();
-    console.log(anomalyHandler.hello())
-    res.status(200).json(model);
+
+   // let model = modelHandler.addItem();
+    anomalyHandler.anomaly_detection("C:\\Users\\sarit\\WebstormProjects\\anomaly_detection_webapp\\reg_flight.csv", "C:\\Users\\sarit\\WebstormProjects\\anomaly_detection_webapp\\anomaly_flight.csv", "hybrid", function (err, result) {
+        console.log(Array.from(result));
+        res.send("hi");
+    });
+
 }
 
 exports.getModel = async (req, res, next) => {
