@@ -1,45 +1,26 @@
-let modelsMap = new Map();
-let size = 0;
 
-function getTimeZone() {
-    let offset = new Date().getTimezoneOffset();
-    let o = Math.abs(offset);
-    return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
-}
-
-function addItem(){
-    const timeElapsed = Date.now();
-    const today = new Date(timeElapsed);
-    let date = new Date(today);
-    date.setHours(date.getHours() - (date.getTimezoneOffset()/ 60 ));
-    let uploadTime = date.toISOString().split('.')[0] + getTimeZone();
-    let model = {"model_id": ++size, "upload_time": uploadTime, "status":"pending"};
-    modelsMap.set(model.model_id.toString(), model);
-    return model;
-}
-
-function getItem(id){
-    return modelsMap.get(id);
-}
-
-function deleteItem(id){
-    let isExist = modelsMap.has(id);
-    if(isExist) {
-        modelsMap.delete(id);
+function parseAnomalies(anomaliesArray)
+{
+    let anomalies = [];
+    for(let i in anomaliesArray){
+        let res = i.split(':');
+        let anomaly = {description:res[0] + ':' + res[1], timestep:res[2]};
+        anomalies.push(anomaly);
     }
-    return isExist;
+
+    let map = new Map();
+
+    for(let i in anomalies){
+        if(!map.has(i.description)){
+            map.set(i.description, [i.timestep]);
+        }
+        else{
+            map.get(i.description).push(i.timestep);
+        }
+    }
 }
 
-function getAllModels(){
-    return modelsMap.values();
-}
 
 module.exports = {
-    addItem,
-    getItem,
-    deleteItem,
-    getAllModels
 };
 
-
-//models.unshift(model);

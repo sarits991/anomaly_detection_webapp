@@ -5,7 +5,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 app.use('/', userRoutes);
-app.listen(9876, () => {
+app.listen(8080, () => {
     console.log("Server running on port 9876");
 });
 
