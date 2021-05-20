@@ -58,6 +58,9 @@ float pearson(float* x, float* y, int size){
     // sqrt to variance
     float x_var_sqrt=sqrt(x_variance);
     float y_var_sqrt=sqrt(y_variance);
+    if(x_var_sqrt*y_var_sqrt == 0) {
+       return 0;
+    }
     return (covariance / (x_var_sqrt*y_var_sqrt));
 }
 

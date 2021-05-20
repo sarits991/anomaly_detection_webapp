@@ -27,6 +27,7 @@ correlatedFeatures SimpleAnomalyDetector::findCorollation(const TimeSeries &ts, 
 		vector<float> column_data = ts.getColumnDataByName(header_line[i]);
 		// find the preason
 		float result = pearson(feature1_data.data(), column_data.data(), size_of_rows);
+		//printf(" end pearson %lf\n", result);
 		// if the pearson is bigger than the mac - replace and save the specific feature
 		if (max_pearson < fabs(result))
 		{
@@ -72,6 +73,7 @@ float SimpleAnomalyDetector::find_threshold(vector<Point *> points, Line line_re
 
 void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts)
 {
+    printf("start learn\n");
 	vector<string> header_line = ts.getHeaderLine();
 	// map index of feature 1 coulm and the data of the corraltion
 	map<int, correlatedFeatures> map_index_cf;
@@ -86,12 +88,14 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts)
 			continue;
 		}
 		correlatedFeatures cFeatures = findCorollation(ts, column_name, index);
+		printf("end corrlation %s",column_name.c_str());
 		// if the corraltion is above 0.9 - it is a corraltion
 		if (cFeatures.corrlation > 0.9)
 		{
 			map_index_cf.insert({index, cFeatures});
 		}
 	}
+	printf("middle learn");
 	// itreate on the map and insert the line regression and threshold
 	for (auto &entry : map_index_cf)
 	{
@@ -102,6 +106,7 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts)
 		entry.second.threshold = max_point * 1.1;
 		this->cf.push_back(entry.second);
 	}
+	printf("finish learn");
 }
 
 vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries &ts)

@@ -15,6 +15,8 @@ AsyncAnomalyAlgorithm::AsyncAnomalyAlgorithm(Function& callback, string modelTyp
     {};
 
 void AsyncAnomalyAlgorithm::Execute() {
+     printf("file name async : %s\n",trainPath.c_str());
+     printf("file name async : %s\n",csvPath.c_str());
      TimeSeries ts_train(trainPath.c_str());
      TimeSeries ts_csv(csvPath.c_str());
      printf("%s %d\n","ts_train size: ", (int)ts_train.getHeaderLine().size());
@@ -23,7 +25,9 @@ void AsyncAnomalyAlgorithm::Execute() {
      if(modelType.compare("regression")==0){
             SimpleAnomalyDetector anomaly;
             anomaly.learnNormal(ts_train);
+            printf("finish learn normal\n");
             anomalies = anomaly.detect(ts_csv);
+            printf("finish detecet\n");
      }
      if(modelType.compare("hybrid")==0){
         HybridAnomalyDetector anomaly;
