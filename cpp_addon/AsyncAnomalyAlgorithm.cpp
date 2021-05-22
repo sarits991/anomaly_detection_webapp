@@ -4,7 +4,6 @@
 #include "HybridAnomalyDetector.h"
 #include <vector>
 #include <string.h>
-#include <iostream>
 #include "AsyncAnomalyAlgorithm.h"
 
 using namespace Napi;
@@ -15,33 +14,19 @@ AsyncAnomalyAlgorithm::AsyncAnomalyAlgorithm(Function& callback, string modelTyp
     {};
 
 void AsyncAnomalyAlgorithm::Execute() {
-     printf("file name async : %s\n",trainPath.c_str());
-     printf("file name async : %s\n",csvPath.c_str());
      TimeSeries ts_train(trainPath.c_str());
      TimeSeries ts_csv(csvPath.c_str());
-     printf("%s %d\n","ts_train size: ", (int)ts_train.getHeaderLine().size());
-     printf("%s %d\n","ts_csv size: ", (int)ts_csv.getHeaderLine().size());
 
      if(modelType.compare("regression")==0){
             SimpleAnomalyDetector anomaly;
             anomaly.learnNormal(ts_train);
-            printf("finish learn normal\n");
             anomalies = anomaly.detect(ts_csv);
-            printf("finish detecet\n");
      }
      if(modelType.compare("hybrid")==0){
         HybridAnomalyDetector anomaly;
         anomaly.learnNormal(ts_train);
         anomalies = anomaly.detect(ts_csv);
      }
-
-//     for(int i=0; i<anomalies.size();i++){
-//        printf("%s ",anomalies[i].description.c_str());
-//        printf("%lu \n",anomalies[i].timeStep);
-//     }
-//      printf("%d",(int)anomalies.size());
-
-     //outputArray = Napi::Array::New(anomalies.size());
 };
 
 void AsyncAnomalyAlgorithm::OnOK() {

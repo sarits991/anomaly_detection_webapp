@@ -25,6 +25,7 @@ exports.findAnomalies = async (req, res) => {
         res.send(jsonRes);
         modelHandler.deleteFiles(files);
     });
+
 }
 
 exports.getHtml = (req, res) => {

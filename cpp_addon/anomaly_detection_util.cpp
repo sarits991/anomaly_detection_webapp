@@ -38,11 +38,11 @@ float cov(float* x, float* y, int size){
 
     // for each number in the x and y array substarct the average and square the result
     float sumSquared=0;
-    for (int i = 0; i < size; i++)
+    int  i;
+    for (i = 0; i < size; i++)
     {
         sumSquared+=(x[i]-xAverage)*(y[i]-yAverage);
     }
-
     return sumSquared/(float)size;
 }
 

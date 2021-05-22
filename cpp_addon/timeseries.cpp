@@ -14,7 +14,12 @@ vector<string> TimeSeries::readAndParseHeaderLine(ifstream &file)
         string splitter;
         //get first string delimited by comma
         getline(sStream, splitter, ',');
-        headers.push_back(splitter);
+        if(find(headers.begin(),headers.end(), splitter) != headers.end()) {
+            headers.push_back(splitter+"_1");
+        }
+        else{
+            headers.push_back(splitter);
+        }
     }
     return headers;
 }
@@ -39,7 +44,6 @@ vector<float> TimeSeries::parseLine(string line)
 //read data from a CSV File
 void TimeSeries::readCsvFile()
 {
-     printf("file name time series : %s\n",this->csv_file_name);
     ifstream file(this->csv_file_name);
     this->header_line = readAndParseHeaderLine(file);
     this->columns_size = this->header_line.size();
