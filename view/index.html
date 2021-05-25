@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="./json2html.js"></script>
-<script src="./post_response_handles.js"></script>
+    <script src="./json2html.js"></script>
+    <script src="./post_response_handles.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Anomaly Detection Server</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Anomaly Detection Server</title>
+    </head>
 
-<body>
-<h1>Anomaly Detection Server</h1>
-<label style="margin-left:50px" for="model_type">
-    <select style="font-size: 17px;" name="model_type" id="model_type" form="detectForm">
-    <option selected="true" disabled="disabled">Choose Algorithm</option>
-    <option value="regression">regression</option>
-    <option value="hybrid">hybrid</option>
-    </select>
-</label>
-<form action="/detect" method="post" enctype="multipart/form-data" id="detectForm" name="detect" target="result" onsubmit="pending()">
-    <table style="margin-left:48px; margin-bottom: 10px; margin-top: 10px">
-        <tr style="font-size: 20px;">
-            <td style="padding-right: 20px;">choose train csv file</td>
-            <td><input style="font-size: 15px;" type="file" name="train_file"></td>
-        </tr>
-        <tr style="font-size: 20px;">
-            <td >choose detect csv file</td>
-            <td><input style="font-size: 15px;" type="file" name="detect_file"></td>
-        </tr>
-    </table>
-    <input style="margin-left:50px; font-size:17px;" type="submit" value="upload">
-</form>
-<iframe style="margin-left:50px; margin-top:10px;" name="result" id="result"  width="50%" height="500" onload="OnLoad()" >
-</iframe>
-
-</body>
+    <body style="min-width: 1000px; min-height: 500px">
+        <img src="images/plane_img.jpg" style="float: right; display: flex;" width ="40%" height="600 px"  alt="plan">
+        <h1 style="color: blue">Anomaly Detection Server</h1>
+        <label style="margin-left:50px" for="model_type">
+            <select style="font-size: 17px; border: 2px solid blue; border-radius: 10px" name="model_type" id="model_type" form="detectForm">
+            <option selected="true" disabled="disabled">Choose Algorithm</option>
+            <option value="regression">regression</option>
+            <option value="hybrid">hybrid</option>
+            </select>
+        </label>
+        <form action="/detect" method="post" enctype="multipart/form-data" id="detectForm" name="detect" target="result" onsubmit="pending()">
+            <table style="margin-left:48px; margin-bottom: 10px; margin-top: 10px; color: mediumblue">
+                <tr style="font-size: 20px; ">
+                    <td style="padding-right: 20px;">choose train csv file</td>
+                    <td>
+                        <input style="font-size: 15px;" type="file" name="train_file">
+                    </td>
+                </tr>
+                <tr style="font-size: 20px;">
+                    <td >choose detect csv file</td>
+                    <td><input style="font-size: 15px;" type="file" name="detect_file"></td>
+                </tr>
+            </table>
+            <input style="margin-left:50px; font-size:17px; background-color: white;
+                color: black; border: 2px solid blue; border-radius: 10px" type="submit" value="upload">
+        </form>
+        <iframe style="margin-left:50px; margin-top:10px;" name="result" id="result" width="50%" height="500" onload="OnLoad()" >
+        </iframe>
+    </body>
 </html>
-
