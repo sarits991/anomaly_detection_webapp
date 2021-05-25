@@ -70,3 +70,7 @@ The project architecture is based on MVC design pattern.Therefore, the project d
 According to Node.js architecture the project consist Route component in order to forward the incoming requests to the appropriate controller functions.
 
 # Class Diagram
+
+The class diagram has three layers according to MVC architecture : Model, Controller, View
+
+![ClassDiagram](https://github.com/sarits991/anomaly_detection_webapp/tree/develop/webapp_uml.png)
