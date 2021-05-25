@@ -73,4 +73,4 @@ According to Node.js architecture the project consist Route component in order t
 
 The class diagram has three layers according to MVC architecture : Model, Controller, View
 
-![ClassDiagram](https://github.com/sarits991/anomaly_detection_webapp/tree/develop/webapp_uml.png)
+* link to picture: ![ClassDiagram](https://https://github.com/sarits991/anomaly_detection_webapp/blob/develop/webapp_uml.png)
