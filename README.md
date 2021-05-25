@@ -40,10 +40,7 @@ The following instructions will guide you how to install Node.js and run the web
 
 ## Operating Instructions for Web client
 * Load `http://localhost:8080` page.
-* Choose algorithm to dete* Load `http://localhost:8080` page.
 * Choose algorithm to detect anomalies in the scroll list.
-* Upload train csv file.
-* Upload detect csv file.ct anomalies in the scroll list.
 * Upload train csv file.
 * Upload detect csv file.
 * Click on the upload button to detect anomalies.
@@ -63,9 +60,9 @@ The following instructions will guide you how to install Node.js and run the web
 ## Project Structure
 The project architecture is based on MVC design pattern.Therefore, the project divide into three main parts:
 * **View:** used for all the UI logic of the application. The view get the html page and the response data from the controller, processing and display it.
-* **Controller:** serves as a link between the view and model. the controller process the incoming requests,
+* **Controller:** serves as a link between the view and model. The controller process the incoming requests,
   manipulate data using the Model component, and send the data to the View component.
-* **Model:** holds the logic buisness, includes the c++ addon.
+* **Model:** holds the logic business, includes the c++ addon.
 
 According to Node.js architecture the project consist Route component in order to forward the incoming requests to the appropriate controller functions.
 
