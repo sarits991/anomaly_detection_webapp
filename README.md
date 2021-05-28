@@ -83,4 +83,4 @@ The class diagram has three layers according to MVC architecture : Model, Contro
 
 
 ## Example Video
-![Download the example video](https://github.com/sarits991/anomaly_detection_webapp/blob/develop/attached_files/presentation.mp4)
+[Download the example video](https://github.com/sarits991/anomaly_detection_webapp/blob/develop/attached_files/presentation.mp4)
