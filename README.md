@@ -37,6 +37,8 @@ The following instructions will guide you how to install Node.js and run the web
     "error" : "invalid data/invalid model type/invalid files"
     }
     ```
+* **Example:** you can use postman to send http requests.
+    ![Postman Example](https://github.com/sarits991/anomaly_detection_webapp/blob/develop/attached_files/postman_example.jpg)
 
 ## Operating Instructions for Web client
 * Load `http://localhost:8080` page.
@@ -66,8 +68,15 @@ The project architecture is based on MVC design pattern.Therefore, the project d
 
 According to Node.js architecture the project consist Route component in order to forward the incoming requests to the appropriate controller functions.
 
-# Class Diagram
+## Class Diagram
 
 The class diagram has three layers according to MVC architecture : Model, Controller, View
 
 ![ClassDiagram](https://github.com/sarits991/anomaly_detection_webapp/blob/develop/webapp_uml.png)
+
+## Features
+
+**Node.js Addons:** Node.js Addons are dynamically-linked shared objects, written in C++. 
+ They are used to provide an interface between js code and c++ code.
+ In our project, the anomalies detection is written in c++. 
+ In order to call this c++ functions asynchronously from js code we used N-API (an api for building Addons) and AsyncWorker N-API feature.
