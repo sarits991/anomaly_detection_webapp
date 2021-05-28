@@ -80,3 +80,7 @@ The class diagram has three layers according to MVC architecture : Model, Contro
  They are used to provide an interface between js code and c++ code.
  In our project, the anomalies detection is written in c++. 
  In order to call this c++ functions asynchronously from js code we used N-API (an api for building Addons) and AsyncWorker N-API feature.
+
+
+## Example Video
+![Download the example video](https://github.com/sarits991/anomaly_detection_webapp/blob/develop/attached_files/presentation.mp4)
